@@ -10,9 +10,16 @@
 </head>
 
 <body>
-  <input type='submit' class='ask-location' value='Use current location'>
+  <form>
+    <input type='text' class='enter-city'>
+    <input type='submit' class='submit-city'>
+  </form>
+
+  <input type='submit' class='track-my-location' value='Find my location'>
   <h4 class='location-result'></h4>
+
   <script src='index.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
 </body>
 
 </html>
