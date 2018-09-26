@@ -1,5 +1,8 @@
+import moment from 'moment-timezone';
+moment().tz("America/Los_Angeles").format();
+
 const textField = document.querySelector('.enter-city');
-const findMeButton = document.querySelector('.track-my-location');
+const findMeButton = document.querySelector('.find-location');
 const locationResult = document.querySelector('.location-result');
 const form = document.querySelector('form');
 
@@ -25,8 +28,13 @@ function getWeatherByZip(e) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      locationResult.innerHTML = 
-        `The temperature in ${location} is ${Math.round(data.currently.temperature)}°F`;
+      locationResult.innerHTML = `The temperature in ${location} is ${Math.round(data.currently.temperature)}°F`;
+      const timezone = data.timezone;
+      data.hourly.data.map(item => {
+        const thisMoment = moment.tz(item.time * 1000, timezone);
+        console.log(`${thisMoment.month()}/${thisMoment.day()}`);
+      });
+      form.reset();
     });
 }
 
@@ -48,8 +56,7 @@ function getWeatherByLocation(position) {
       .then(data => {
         console.log(data);
         locationResult.innerHTML = 
-          `The temperature in ${location} is ${Math.round(data.currently.temperature)}`;
-        form.reset();
+          `The temperature in ${location} is ${Math.round(data.currently.temperature)}°F`;
       });
   }
   return getWeather();
