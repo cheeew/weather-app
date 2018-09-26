@@ -5,31 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-  <title>Weather App</title>
+  <title>Rain or Shine App</title>
 </head>
 
 <body>
-  <h1>What the Weather</h1>
-  <div class="weather-info">
-    <div class="manual-form">
-      <h2>Manually locate me</h2>
+  <div class="wrapper">
+    <header class="no-prev-data">
+      <span>Welcome to</span>
+      <h1>Rain or Shine</h1>
+      <h3>In short, we're weather freaks. We geek over clouds and dew points. So, if you're all about knowing the
+        difference between cumulus, cirrus and noctilucent clouds, you're in good hands. At Rain or Shine we don't let
+        our passion devolve into pretention, so if you're just looking to be informed on daily and weekly forecasts,
+        we've got your back as well.<br><br>Happy forecasting!</h3>
+    </header>
+    <div class="specify-location">
       <form>
+        <div class="find-location button">
+          <i class="fas fa-location-arrow"></i>
+        </div>
         <input type='text' class='enter-city' placeholder="Zip code" autofocus>
-        <input type='submit' class='submit-city button' value="Find me">
+        <div class='search-button button'>
+          <i class="fas fa-search"></i>
+        </div>
       </form>
     </div>
-    <div class="automagically-find-me">
-      <h2>Automagically locate me</h2>
-      <div class="find-location button">
-        <i class="fas fa-location-arrow"></i>
-        <span>Magic</span>
-      </div>
-    </div>
+    <h3 class="location-result"></h3>
   </div>
-  <h4 class='location-result'></h4>
 
   <script src='dist/bundle.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>

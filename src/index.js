@@ -3,8 +3,9 @@ moment().tz("America/Los_Angeles").format();
 
 const textField = document.querySelector('.enter-city');
 const findMeButton = document.querySelector('.find-location');
-const locationResult = document.querySelector('.location-result');
 const form = document.querySelector('form');
+const searchButton = document.querySelector('.search-button');
+const locationResult = document.querySelector('.location-result');
 
 const googleApiKey = 'AIzaSyBWIsU_qcYzM8z_knUgr99-nnhQk4dYBkk';
 const googleUrl = "https://maps.googleapis.com/maps/api/geocode/json";
@@ -35,6 +36,7 @@ function getWeatherByZip(e) {
         console.log(`${thisMoment.month()}/${thisMoment.day()}`);
       });
       form.reset();
+      textField.focus();
     });
 }
 
@@ -70,5 +72,6 @@ function getLocation() {
   }
 }
 
-form.addEventListener('submit', getWeatherByZip);
 findMeButton.addEventListener('click', getLocation);
+form.addEventListener('submit', getWeatherByZip);
+searchButton.addEventListener('click', getWeatherByZip);
