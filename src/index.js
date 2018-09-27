@@ -14,6 +14,8 @@ const temp = document.querySelector('.temp');
 const high = document.querySelector('.high-value');
 const low = document.querySelector('.low-value');
 const city = document.querySelector('.city');
+const menuContainer = document.querySelector('.menu-container');
+const menu = document.querySelector('.menu');
 
 const googleApiKey = 'AIzaSyBWIsU_qcYzM8z_knUgr99-nnhQk4dYBkk';
 const googleUrl = "https://maps.googleapis.com/maps/api/geocode/json";
@@ -102,3 +104,4 @@ findMeButton.addEventListener('click', getLocation);
 form.addEventListener('submit', getWeatherByZip);
 searchButton.addEventListener('click', getWeatherByZip);
 tempButtons.map(button => button.addEventListener('click', changeTempUnit));
+menuContainer.addEventListener('click', () => menu.classList.toggle('active'));

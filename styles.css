@@ -178,6 +178,7 @@ form input[type='text']::placeholder {
   position: fixed;
   content: '';
   top: 19px;
+  animation: shrink-reverse 800ms ease forwards;
 }
 
 .menu {
@@ -185,16 +186,53 @@ form input[type='text']::placeholder {
   height: 4px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50px;
+  animation: shrink-reverse 800ms ease 150ms forwards;
 }
 
 .menu::after {
-  width: 12px;
+  width: 15px;
   height: 4px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50px;
   position: fixed;
   content: '';
   top: 38px;
+  animation: shrink-reverse 800ms ease 300ms forwards;
+}
+
+.menu.active::before {
+  animation: shrink 600ms ease forwards;
+}
+
+.menu.active {
+  animation: shrink 600ms ease 150ms forwards;
+}
+
+.menu.active::after {
+  animation: shrink 600ms ease 300ms forwards;
+}
+
+@keyframes shrink {
+  0% {}
+  50% {
+    width: 0;
+  }
+  100% {
+    background-color: #497AD6;
+  }
+}
+
+@keyframes shrink-reverse {
+  0% { 
+    background-color: #497AD6; 
+  }
+  50% {
+    width: 0;
+    background-color: #497AD6;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }
 
 .city {
