@@ -13,14 +13,12 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <header class="no-prev-data">
+  <div class="welcome-wrapper">
+    <header class="welcome-header">
       <span>Welcome to</span>
       <h1>Rain or Shine</h1>
-      <h3>In short, we're weather freaks. We geek over clouds and dew points. So, if you're all about knowing the
-        difference between cumulus, cirrus and noctilucent clouds, you're in good hands. At Rain or Shine we don't let
-        our passion devolve into pretention, so if you're just looking to be informed on daily and weekly forecasts,
-        we've got your back as well.<br><br>Happy forecasting!</h3>
+      <h3>In short, we're weather freaks. We marvel over noctilucent clouds and dew points while providing you all
+        of your essential weather data.</h3>
     </header>
     <div class="specify-location">
       <form>
@@ -33,7 +31,38 @@
         </div>
       </form>
     </div>
-    <h3 class="location-result"></h3>
+  </div>
+  <div class="home-wrapper">
+    <header class="weather-header">
+      <div class="menu-container">
+        <div class="menu"></div>
+      </div>
+      <span class="city"></span>
+      <span class="time"></span>
+    </header>
+    <div class="main-canvas">
+      <div class="current-temp">
+        <span class="temp f active"></span>
+        <span class="temp c"></span>
+      </div>
+      <div class="switch-temp-unit">
+        <div class="temp-unit">
+          <span class="temp-button farenheit active-temp">°F</span>
+          <span class="temp-button celsius">°C</span>
+        </div>
+      </div>
+      <div class="current-details">
+        <img class="weather-icon" src="weather-icons/clear-day.png">
+        <div class="temp-high">
+          <img class="high-icon" src="">
+          <span class="high-value"></span>
+        </div>
+        <div class="temp-low">
+          <img class="high-icon" src="">
+          <span class='low-value'></span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src='dist/bundle.js'></script>
