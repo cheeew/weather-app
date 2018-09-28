@@ -294,33 +294,28 @@ form input[type='text']::placeholder {
   height: 30%;
 }
 
-.temp-unit:hover {
+.temp-button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.temp-button:hover {
   cursor: pointer;
 }
 
-.temp-button.active {
+.highlighter {
   background-color: rgb(73, 122, 214);
   border-radius: 5px;
+  position: absolute;
+  transition: left 500ms ease;
 }
 
-.farenheit {
+.unit-text {
+  z-index: 1;
   color: white;
-  flex: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 400ms ease;
-}
-
-.celsius {
-  color: white;
-  flex: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 400ms ease;
 }
 
 .current-details{
