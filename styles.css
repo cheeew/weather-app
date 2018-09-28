@@ -173,49 +173,55 @@ form input[type='text']::placeholder {
 .menu::before {
   width: 25px;
   height: 4px;
-  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50px;
   position: fixed;
   content: '';
   top: 19px;
-  animation: shrink-reverse 800ms ease forwards;
+  background-color: #497AD6;
+  animation: shrink-reverse 600ms ease forwards;
 }
 
 .menu {
   width: 20px;
   height: 4px;
-  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50px;
-  animation: shrink-reverse 800ms ease 150ms forwards;
+  background-color: #497AD6;
+  animation: shrink-reverse 600ms ease 175ms forwards;
 }
 
 .menu::after {
   width: 15px;
   height: 4px;
-  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50px;
   position: fixed;
   content: '';
   top: 38px;
-  animation: shrink-reverse 800ms ease 300ms forwards;
+  background-color: #497AD6;
+  animation: shrink-reverse 600ms ease 400ms forwards;
 }
 
 .menu.active::before {
+  background-color: rgba(0, 0, 0, 0.6);
   animation: shrink 600ms ease forwards;
 }
 
 .menu.active {
-  animation: shrink 600ms ease 150ms forwards;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: shrink 600ms ease 175ms forwards;
 }
 
 .menu.active::after {
-  animation: shrink 600ms ease 300ms forwards;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: shrink 600ms ease 400ms forwards;
 }
 
 @keyframes shrink {
-  0% {}
+  0% {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
   50% {
     width: 0;
+    background-color: rgba(0, 0, 0, 0.6);
   }
   100% {
     background-color: #497AD6;
@@ -276,7 +282,6 @@ form input[type='text']::placeholder {
   justify-content: center;
   width: 100%;
   flex: 0.3;
-  /* margin-bottom: 50px; */
 }
 
 .temp-unit {
@@ -291,6 +296,11 @@ form input[type='text']::placeholder {
 
 .temp-unit:hover {
   cursor: pointer;
+}
+
+.temp-button.active {
+  background-color: rgb(73, 122, 214);
+  border-radius: 5px;
 }
 
 .farenheit {
@@ -313,11 +323,6 @@ form input[type='text']::placeholder {
   transition: background-color 400ms ease;
 }
 
-.active-temp {
-  background-color: rgb(73, 122, 214);
-  border-radius: 5px;
-}
-
 .current-details{
   display: flex;
   flex: 0.25;
@@ -338,6 +343,8 @@ form input[type='text']::placeholder {
 .current-details span:after {
   content: '°';
 }
+
+.low
 
 @media screen and (max-width: 800px) {
   .welcome-wrapper {
