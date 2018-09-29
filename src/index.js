@@ -1,4 +1,4 @@
-import { findMeButton, form, searchButton, getWeatherByZip, getLocation, welcomeWrapper } from './js/welcome.js';
+import { findMeButton, form, searchButton, getWeatherByZip, getLocation, welcomeWrapper, textField, autoComplete} from './js/welcome.js';
 import { menuLinks, sidebar } from './js/sidebar.js'
 import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight } from './js/overview.js';
 import moment from 'moment-timezone';
@@ -21,6 +21,7 @@ menuLinks.map(link => link.addEventListener('mouseout', () => {
   const menuOption = link.firstElementChild;
   menuOption.classList.remove('active');
 }));
+// textField.addEventListener('keyup', autoComplete);
 
 // Use only for app development / delete upon app completion
 const skip = document.querySelector('.skip');
@@ -30,5 +31,6 @@ menuLinks.map(link => link.addEventListener('click', () => {
   sidebar.classList.remove('active');
   menu.classList.remove('active');
   link.firstElementChild.innerHTML === 'Welcome' ? welcomeWrapper.classList.remove('slide-out') : '';
+  textField.focus();
 }));
 

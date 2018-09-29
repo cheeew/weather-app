@@ -1,11 +1,20 @@
 import { config } from './config';
-import { city, currentTempF, currentTempC, highF, highC, lowF, lowC, weatherIcon } from './overview.js'
+import { city, currentTempF, currentTempC, highF, highC, lowF, lowC, weatherIcon } from './overview.js';
 
 export const welcomeWrapper = document.querySelector('.welcome-wrapper');
 export const textField = document.querySelector('.enter-city');
 export const findMeButton = document.querySelector('.find-location');
 export const form = document.querySelector('form');
 export const searchButton = document.querySelector('.search-button');
+
+export function autoComplete(e) {
+  console.log(e);
+  let userInput = textField.value;
+
+  fetch(`${config.googlePlacesURL}input=${userInput}&types=geocode&key=${config.googleApiKey}`)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
 
 export function getWeatherByZip(e) {
   e.preventDefault();
@@ -17,7 +26,9 @@ export function getWeatherByZip(e) {
     .then(data => {
       console.log(data);
       const coords = `${data.results[0].geometry.location.lat},${data.results[0].geometry.location.lng}`;
-      city.innerHTML = data.results[0].address_components[1].long_name;
+      data.results[0].address_components.map(address => {
+        address.types.includes('locality') ? city.innerHTML = address.long_name : '';
+      });
       return fetchJsonp(config.darkskyUrl + config.darkskyApiKey + coords);
     })
     .then(response => response.json())
@@ -56,7 +67,9 @@ export function getWeatherByLocation(position) {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        city.innerHTML = data.results[5].address_components[0].long_name;
+        data.results[0].address_components.map(address => {
+          address.types.includes('locality') ? city.innerHTML = address.long_name : '';
+        });
         return fetchJsonp(`${config.darkskyUrl}${darkskyParams}`);
       })
       .then(response => response.json())
