@@ -1,5 +1,5 @@
 import { config } from './config';
-import { city, currentTempF, currentTempC, highF, highC, lowF, lowC } from './overview.js'
+import { city, currentTempF, currentTempC, highF, highC, lowF, lowC, weatherIcon } from './overview.js'
 
 export const welcomeWrapper = document.querySelector('.welcome-wrapper');
 export const textField = document.querySelector('.enter-city');
@@ -24,12 +24,20 @@ export function getWeatherByZip(e) {
     .then(data => {
       console.log(data);
       data.hourly.data.map(item => {
+        // populate current, high & low °F temperatures
         currentTempF.innerHTML = Math.round(data.currently.temperature);
         highF.innerHTML = Math.round(data.daily.data[0].temperatureMax);
         lowF.innerHTML = Math.round(data.daily.data[0].temperatureLow);
+        // populate current, high & low °C temperatures
         currentTempC.innerHTML = Math.round((currentTempF.innerHTML - 32) * (5/9));
         highC.innerHTML = Math.round((highF.innerHTML - 32) * (5/9));
         lowC.innerHTML = Math.round((lowF.innerHTML - 32) * (5/9));
+        // populate weather image
+        data.currently.icon === 'clear-day' ? weatherIcon.src = "./weather_icons/clear-day.png" : '';
+        data.currently.icon === 'clear-night' ? weatherIcon.src = "./weather_icons/clear-night.png" : '';
+        data.currently.icon === 'partly-cloudy-day' ? weatherIcon.src = "./weather_icons/partly-cloudy-day.png" : '';
+        data.currently.icon === 'partly-cloudy-night' ? weatherIcon.src = "./weather_icons/partly-cloudy-night.png" : '';
+        data.currently.icon === 'rain' ? weatherIcon.src = "./weather_icons/rain.png" : '';
       });
       form.reset();
       welcomeWrapper.classList.add('slide-out');
@@ -47,13 +55,27 @@ export function getWeatherByLocation(position) {
     fetch(config.googleUrl + googleParams)
       .then(response => response.json())
       .then(data => {
-        location = data.results[4].formatted_address;
+        console.log(data);
+        city.innerHTML = data.results[5].address_components[0].long_name;
         return fetchJsonp(`${config.darkskyUrl}${darkskyParams}`);
       })
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        currentTempF.innerHTML = `${Math.round(data.currently.temperature)}`;
+        // populate current, high & low °F temperatures
+        currentTempF.innerHTML = Math.round(data.currently.temperature);
+        highF.innerHTML = Math.round(data.daily.data[0].temperatureMax);
+        lowF.innerHTML = Math.round(data.daily.data[0].temperatureLow);
+        // populate current, high & low °C temperatures
+        currentTempC.innerHTML = Math.round((currentTempF.innerHTML - 32) * (5/9));
+        highC.innerHTML = Math.round((highF.innerHTML - 32) * (5/9));
+        lowC.innerHTML = Math.round((lowF.innerHTML - 32) * (5/9));
+        // populate weather image
+        data.currently.icon === 'clear-day' ? weatherIcon.src = "./weather_icons/clear-day.png" : '';
+        data.currently.icon === 'clear-night' ? weatherIcon.src = "./weather_icons/clear-night.png" : '';
+        data.currently.icon === 'partly-cloudy-day' ? weatherIcon.src = "./weather_icons/partly-cloudy-day.png" : '';
+        data.currently.icon === 'partly-cloudy-night' ? weatherIcon.src = "./weather_icons/partly-cloudy-night.png" : '';
+        data.currently.icon === 'rain' ? weatherIcon.src = "./weather_icons/rain.png" : '';
       });
   }
   getWeather();

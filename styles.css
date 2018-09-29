@@ -1,6 +1,5 @@
 body {
   display: flex;
-  align-items: center;
   height: 100vh;
   width: 100vw;
   flex-direction: column;
@@ -30,9 +29,9 @@ h1, h2, h3{
   box-sizing: border-box;
   align-items: center;
   background-color: white;
-  z-index: 4;
+  z-index: 5;
   transition: transform 1000ms ease, 
-    opacity 800ms ease-in-out;
+    opacity 1000ms ease;
 }
 
 .slide-out {
@@ -130,7 +129,7 @@ form input[type='text']::placeholder {
   transform: translate(1px, 1px);
 }
 
-.home-wrapper {
+.overview-wrapper {
   position: fixed;
   z-index: 3;
   width: 100%;
@@ -139,6 +138,8 @@ form input[type='text']::placeholder {
   background-color: white;
   display: flex;
   flex-direction: column;
+  transition: width 400ms ease;
+  right: 0;
 }
 
 .weather-header {
@@ -157,13 +158,16 @@ form input[type='text']::placeholder {
 }
 
 .menu-container {
-  height: 22px;
-  width: 25px;
+  height: 25px;
+  width: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding-right: 5px;
+  z-index: 4;
+  left: 40px;
+  top: 19px;
+  position: fixed;
 }
 
 .menu-container:hover {
@@ -177,8 +181,10 @@ form input[type='text']::placeholder {
   position: fixed;
   content: '';
   top: 19px;
+  z-index: 4;
+  left: 40px;
   background-color: #497AD6;
-  animation: shrink-reverse 600ms ease forwards;
+  animation: shrink-reverse 400ms ease forwards;
 }
 
 .menu {
@@ -186,7 +192,11 @@ form input[type='text']::placeholder {
   height: 4px;
   border-radius: 50px;
   background-color: #497AD6;
-  animation: shrink-reverse 600ms ease 175ms forwards;
+  animation: shrink-reverse 400ms ease 175ms forwards;
+  z-index: 4;
+  left: 40px;
+  top: 27.5px;
+  position: fixed;
 }
 
 .menu::after {
@@ -196,23 +206,25 @@ form input[type='text']::placeholder {
   position: fixed;
   content: '';
   top: 38px;
+  z-index: 4;
+  left: 40px;
   background-color: #497AD6;
-  animation: shrink-reverse 600ms ease 400ms forwards;
+  animation: shrink-reverse 400ms ease 400ms forwards;
 }
 
 .menu.active::before {
   background-color: rgba(0, 0, 0, 0.6);
-  animation: shrink 600ms ease forwards;
+  animation: shrink 400ms ease forwards;
 }
 
 .menu.active {
   background-color: rgba(0, 0, 0, 0.6);
-  animation: shrink 600ms ease 175ms forwards;
+  animation: shrink 400ms ease 175ms forwards;
 }
 
 .menu.active::after {
   background-color: rgba(0, 0, 0, 0.6);
-  animation: shrink 600ms ease 400ms forwards;
+  animation: shrink 400ms ease 400ms forwards;
 }
 
 @keyframes shrink {
@@ -222,9 +234,11 @@ form input[type='text']::placeholder {
   50% {
     width: 0;
     background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0.4;
   }
   100% {
     background-color: #497AD6;
+    opacity: 1;
   }
 }
 
@@ -235,9 +249,11 @@ form input[type='text']::placeholder {
   50% {
     width: 0;
     background-color: #497AD6;
+    opacity: 0.4;
   }
   100% {
     background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
   }
 }
 
@@ -310,7 +326,7 @@ form input[type='text']::placeholder {
   background-color: rgb(73, 122, 214);
   border-radius: 5px;
   position: absolute;
-  transition: left 500ms ease;
+  transition: left 500ms ease, width 500ms ease;
 }
 
 .unit-text {
@@ -331,6 +347,16 @@ form input[type='text']::placeholder {
   width: auto;
 }
 
+.temp-high, .temp-low, .high-icon, .low-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.high-icon, .low-icon {
+  margin-right: 6px;
+}
+
 .current-details span {
   font-size: 19px;
 }
@@ -339,7 +365,107 @@ form input[type='text']::placeholder {
   content: '°';
 }
 
-.low
+.sidebar-nav {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 3;
+  transform: translateX(100%);
+  background-color: #424242;
+  transition: transform 250ms ease, opacity 300ms ease;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav.active {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.sidebar-nav h2 {
+  color: white;
+  text-align: center;
+  margin: 60px 0 30px 0;
+  flex: 1;
+}
+
+.nav-links-ul {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  flex: 10;
+  margin: 0;
+  padding: 5% 0 7%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-links-ul a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  padding: 0 25%;
+  color: rgba(255, 255, 255, 0.80);
+  transition: transform 300ms ease, box-shadow 100ms ease;
+}
+
+.nav-links-ul a:hover {
+  color: white;
+  transform: translate(2px, -2px);
+  box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+.nav-links-ul a:active {
+  color: rgba(255, 255, 255, 0.80);
+  transform: translate(-2px, 2px);
+  box-shadow: 0px 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.nav-links-ul a li {
+  box-sizing: border-box;
+  padding: 15px 0;
+  font-size: 15px;
+}
+
+.nav-links-ul a li.active {
+  animation: move 300ms ease alternate infinite;
+  transition: transform 200ms ease;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(3px);
+  }
+}
+
+.made-with-love {
+  color: white;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding-bottom: 30px; 
+}
+
+.fa-heart {
+  color: red;
+  margin-left: 3px;
+}
+
+.fa-umbrella {
+  padding-bottom: 5px;
+}
 
 @media screen and (max-width: 800px) {
   .welcome-wrapper {
