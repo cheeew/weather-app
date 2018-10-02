@@ -104,7 +104,7 @@ export function getWeatherByLocation(position) {
   longitude = position.coords.longitude;
   const googleParams = `?latlng=${latitude},${longitude}&key=${config.googleApiKey}`,
   darkskyParams = `${config.darkskyApiKey}${latitude},${longitude}`;
-  let location;
+  let i = 0;
 
   const getWeather = () => {
     fetch(config.googleUrl + googleParams)
@@ -134,7 +134,51 @@ export function getWeatherByLocation(position) {
         data.currently.icon === 'partly-cloudy-night' ? weatherIcon.src = "./weather_icons/partly-cloudy-night.png" : '';
         data.currently.icon === 'cloudy' ? weatherIcon.src = "./weather_icons/cloudy.png" : '';
         data.currently.icon === 'rain' ? weatherIcon.src = "./weather_icons/rain.png" : '';
+      
+        // Populate Hourly Forecast
+      data.hourly.data.map(array => { 
+        if(i > 23) return;
+        // Print Hour
+        const hour = new Date(array.time * 1000).getHours();
+        hour > 12 ? hourTitle[i].innerHTML = `${hour - 12} PM` : hourTitle[i].innerHTML = `${hour} AM`;
+        hour == 0 ? hourTitle[i].innerHTML = "12 AM" : '';
+        hour == 12 ? hourTitle[i].innerHTML = "12 PM" : '';
+        // Print Temp
+        tempTitle[i].innerHTML = `${Math.round(array.temperature)}°`;
+        // Print Icon
+        array.icon === 'clear-day' ? hourImage[i].src = "./weather_icons/clear-day.png" : '';
+        array.icon === 'clear-night' ? hourImage[i].src = "./weather_icons/clear-night.png" : '';
+        array.icon === 'partly-cloudy-day' ? hourImage[i].src = "./weather_icons/partly-cloudy-day.png" : '';
+        array.icon === 'partly-cloudy-night' ? hourImage[i].src = "./weather_icons/partly-cloudy-night.png" : '';
+        array.icon === 'cloudy' ? hourImage[i].src = "./weather_icons/cloudy.png" : '';
+        array.icon === 'rain' ? hourImage[i].src = "./weather_icons/rain.png" : '';
+
+        i += 1;
       });
+      // reset iterator
+      i = 0;
+      // Populate Weekly Forecast
+      data.daily.data.map(array => { 
+        if(i > 7) return;
+        // Print Day
+        const day = new Date().getDay();
+        const week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const today = day + i;
+        weekday[i].innerHTML = today > 6 ? week[today - 7] : week[today];
+        // Print High/Low Temps
+        dayLow[i].innerHTML = `${Math.round(array.temperatureLow)}°`;
+        dayHigh[i].innerHTML = `${Math.round(array.temperatureHigh)}°`;
+        // Print Weather Icon
+        array.icon === 'clear-day' ? dayIcon[i].src = "./weather_icons/clear-day.png" : '';
+        array.icon === 'clear-night' ? dayIcon[i].src = "./weather_icons/clear-night.png" : '';
+        array.icon === 'partly-cloudy-day' ? dayIcon[i].src = "./weather_icons/partly-cloudy-day.png" : '';
+        array.icon === 'partly-cloudy-night' ? dayIcon[i].src = "./weather_icons/partly-cloudy-night.png" : '';
+        array.icon === 'cloudy' ? dayIcon[i].src = "./weather_icons/cloudy.png" : '';
+        array.icon === 'rain' ? dayIcon[i].src = "./weather_icons/rain.png" : '';
+
+        i += 1;
+      });
+    });
   }
   getWeather();
   welcomeWrapper.classList.add('slide-out');
