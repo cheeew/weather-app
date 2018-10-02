@@ -1,3 +1,5 @@
+/* Global Styles */
+
 body {
   display: flex;
   height: 100vh;
@@ -20,6 +22,8 @@ h1, h2, h3{
   margin: 10px 0;
 }
 
+/* Welcome Styles */
+
 .welcome-wrapper {
   display: flex;
   flex-direction: column;
@@ -29,7 +33,7 @@ h1, h2, h3{
   box-sizing: border-box;
   align-items: center;
   background-color: white;
-  z-index: 5;
+  z-index: 6;
   transition: transform 1000ms ease, 
     opacity 1000ms ease;
 }
@@ -129,6 +133,8 @@ form input[type='text']::placeholder {
   transform: translate(1px, 1px);
 }
 
+/* Overview Styles */
+
 .overview-wrapper {
   position: fixed;
   z-index: 3;
@@ -140,10 +146,13 @@ form input[type='text']::placeholder {
   flex-direction: column;
   transition: width 400ms ease;
   right: 0;
+  transition: transform 1000ms ease, 
+  opacity 1000ms ease;
 }
 
 .weather-header {
   position: fixed;
+  background-color: white;
   width: 100%;
   height: 60px;
   display: flex;
@@ -151,11 +160,10 @@ form input[type='text']::placeholder {
   align-items: center;
   box-sizing: border-box;
   padding: 0 40px;
+  z-index: 4;
 }
 
-.city {
-  font-size: 19px;
-}
+/* Menu styles */
 
 .menu-container {
   height: 25px;
@@ -164,7 +172,7 @@ form input[type='text']::placeholder {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  z-index: 4;
+  z-index: 5;
   left: 40px;
   top: 19px;
   position: fixed;
@@ -181,7 +189,7 @@ form input[type='text']::placeholder {
   position: fixed;
   content: '';
   top: 19px;
-  z-index: 4;
+  z-index: 5;
   left: 40px;
   background-color: #497AD6;
   animation: shrink-reverse 400ms ease forwards;
@@ -193,9 +201,9 @@ form input[type='text']::placeholder {
   border-radius: 50px;
   background-color: #497AD6;
   animation: shrink-reverse 400ms ease 175ms forwards;
-  z-index: 4;
+  z-index: 5;
   left: 40px;
-  top: 27.5px;
+  top: 28px;
   position: fixed;
 }
 
@@ -205,8 +213,8 @@ form input[type='text']::placeholder {
   border-radius: 50px;
   position: fixed;
   content: '';
-  top: 38px;
-  z-index: 4;
+  top: 37px;
+  z-index: 5;
   left: 40px;
   background-color: #497AD6;
   animation: shrink-reverse 400ms ease 400ms forwards;
@@ -259,8 +267,11 @@ form input[type='text']::placeholder {
 
 .city {
   flex: 1;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  font-size: 19px;
 }
 
 .time {
@@ -365,11 +376,13 @@ form input[type='text']::placeholder {
   content: '°';
 }
 
+/* Sidebar styles */
+
 .sidebar-nav {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   transform: translateX(100%);
   background-color: #424242;
   transition: transform 250ms ease, opacity 300ms ease;
@@ -466,6 +479,128 @@ form input[type='text']::placeholder {
 .fa-umbrella {
   padding-bottom: 5px;
 }
+
+/* Forecast Styles */
+
+.forecast-wrapper {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  padding: 60px 0 10px;
+  transition: transform 1000ms ease, 
+  opacity 1000ms ease;
+  box-sizing: border-box;
+}
+
+.hourly-forecast {
+  width: 100%;
+  height: 22%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  white-space: nowrap;
+}
+
+.hour-container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: scroll;
+  
+}
+
+.hour-update {
+  flex: 0 0 auto;
+}
+
+.hour-update ~ .hour-update {
+  margin-left: 30px; 
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.hour-update {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 75px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+}
+
+.hour-update img {
+  width: 50px;
+  height: 50px;
+}
+
+.weekly-forecast {
+  width: 100%;
+  flex: 1;
+  padding: 10px 15px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.daily-update {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 5px 5px 5px rgb(189, 189, 189);
+  padding: 0 40px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.daily-update ~ .daily-update {
+  margin-top: 10px;
+}
+
+.daily-update:last-child {
+  margin-bottom: 10px;
+}
+
+.daily-update img {
+  width: 45px;
+  height: auto;
+}
+
+.temp-of-day::before {
+  width: 2px;
+  height: 20px;
+  background-color: rgb(189, 189, 189);
+  position: absolute;
+  content: '';
+  transform: translate(33.5px, 1px);
+}
+
+.high-temp {
+  margin-left: 15px;
+}
+
+/* Current Day Details Styles */
+
+.current-day-details {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: lightblue;
+}
+
+
+/* Responsive styles */
 
 @media screen and (max-width: 800px) {
   .welcome-wrapper {

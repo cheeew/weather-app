@@ -1,6 +1,6 @@
 import { findMeButton, form, searchButton, getWeatherByZip, getLocation, welcomeWrapper, textField, autoComplete} from './js/welcome.js';
 import { menuLinks, sidebar } from './js/sidebar.js'
-import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight } from './js/overview.js';
+import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight, overviewWrapper } from './js/overview.js';
 import moment from 'moment-timezone';
 moment().tz("America/Los_Angeles").format();
 
@@ -31,6 +31,7 @@ menuLinks.map(link => link.addEventListener('click', () => {
   sidebar.classList.remove('active');
   menu.classList.remove('active');
   link.firstElementChild.innerHTML === 'Welcome' ? welcomeWrapper.classList.remove('slide-out') : '';
+  link.firstElementChild.innerHTML === 'Forecast' ? overviewWrapper.classList.add('slide-out') : '';
   textField.focus();
 }));
 
