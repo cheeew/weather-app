@@ -7,3 +7,4 @@ export const weekday = [...document.querySelectorAll('.day-of-week')];
 export const dayIcon = [...document.querySelectorAll('.daily-update img')];
 export const dayLow = [...document.querySelectorAll('.low-temp')];
 export const dayHigh = [...document.querySelectorAll('.high-temp')];
+export const forecastWrapper = document.querySelector('.forecast-wrapper');

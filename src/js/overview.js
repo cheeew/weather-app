@@ -14,12 +14,14 @@ export const city = document.querySelector('.city');
 export const menuContainer = document.querySelector('.menu-container');
 export const menu = document.querySelector('.menu');
 export const highlighter = document.querySelector('.highlighter');
-export const weatherIcon = document.querySelector('.weather-icon');
+export const weatherIcon = [...document.querySelectorAll('.weather-icon')];
 
 highlighter.style.width = `${defaultTemp.getBoundingClientRect().width}px`;
 highlighter.style.left = `${defaultTemp.getBoundingClientRect().left}px`;
 highlighter.style.height = `${defaultTemp.getBoundingClientRect().height}px`;
 highlighter.style.top = `${defaultTemp.getBoundingClientRect().top + window.scrollY}px`;
+
+lowF.innerHTML !== '' ? menu.style.zIndex = '7' : '' ? menuContainer.style.zIndex = '7' : '';
 
 export function toggleTemp() {
   const changeUnit = () => tempButtons.map(b => {

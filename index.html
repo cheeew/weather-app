@@ -30,32 +30,30 @@
           <i class="fas fa-search"></i>
         </div>
       </form>
-      <!-- delete this upon app compeletion -->
-      <a href="#" class="skip">SKIP</a>
-      <!-- -------------------------------- -->
     </div>
   </section>
   <header class="weather-header">
+    <span class="invisible"></span>
     <span class="city"></span>
-    <span class="time"></span>
+    <i class="fas fa-sync-alt"></i>
   </header>
   <div class="menu-container">
     <div class="menu"></div>
   </div>
-  <section class="sidebar-nav">
+  <div class="sidebar-nav">
     <h2>Rain or Shine</h2>
     <ul class="nav-links-ul">
       <a href="#">
-        <li>Welcome</li>
+        <li data-pseudo-class="welcome-wrapper">New Search</li>
       </a>
       <a href="#">
-        <li>Overview</li>
+        <li data-pseudo-class="overview-wrapper">Overview</li>
       </a>
       <a href="#">
-        <li>Forecast</li>
+        <li data-pseudo-class="forecast-wrapper">Forecast</li>
       </a>
       <a href="#">
-        <li>Details</li>
+        <li data-pseudo-class="details-wrapper">Details</li>
       </a>
     </ul>
     <div class="made-with-love">
@@ -70,7 +68,7 @@
         Made with <i class="fas fa-heart"></i>
       </div>
     </div>
-  </section>
+  </div>
   <section class="overview-wrapper">
     <div class="main-canvas">
       <div class="current-temp">
@@ -297,22 +295,43 @@
       </div>
     </div>
   </section>
-  <section class="current-day-details">
-    <div class="weather-icon">
-
+  <section class="details-wrapper">
+    <div class="primary">
+      <div class="details-weather-icon">
+        <img src="" class="weather-icon">
+      </div>
+      <ul class="weather-variables">
+        <li>
+          <span class="detail-title">Wind Speed</span>
+          <span class="wind-speed-result"></span>
+        </li>
+        <li>
+          <span class="detail-title">Humidity</span>
+          <span class="humidity-result"></span>
+        </li>
+        <li>
+          <span class="detail-title">Precipitation</span>
+          <span class="precipitation-result"></span>
+        </li>
+        <li>
+          <span class="detail-title">Dew Point</span>
+          <span class="dew-point"></span>
+        </li>
+        <li>
+          <span class="detail-title">Visibility</span>
+          <span class="visibility-result"></span>
+        </li>
+        <li>
+          <span class="detail-title">UV Index</span>
+          <span class="uv-index-result"></span>
+        </li>
+      </ul>
     </div>
-    <div class="weather-variables">
-      <div class="humidity">
-
-      </div class="uv-index">
-      <div>
-
-      </div>
-      <div class="visibility">
-
-      </div>
-      <div class="">
-
+    <div class="secondary">
+      <h3>Summary</h3>
+      <div class="weather-summary">
+        <span class="today-summary"></span>
+        <span class="week-summary"></span>
       </div>
     </div>
   </section>

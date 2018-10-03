@@ -1,8 +1,9 @@
-import { findMeButton, form, searchButton, getWeatherByZip, getLocation, welcomeWrapper, textField, autoComplete} from './js/welcome.js';
+import { findMeButton, form, searchButton, getWeatherByZip, getLocation, textField } from './js/welcome.js';
 import { menuLinks, sidebar } from './js/sidebar.js'
-import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight, overviewWrapper } from './js/overview.js';
+import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight } from './js/overview.js';
 import moment from 'moment-timezone';
 moment().tz("America/Los_Angeles").format();
+const sections = [...document.querySelectorAll('section')];
 
 findMeButton.addEventListener('click', getLocation);
 form.addEventListener('submit', getWeatherByZip);
@@ -15,23 +16,24 @@ menuContainer.addEventListener('click', () => {
 window.addEventListener('resize', responsiveHighlight);
 menuLinks.map(link => link.addEventListener('mouseover', () => {
   const menuOption = link.firstElementChild;
-  menuOption.classList.add('active');
+  window.innerWidth > 800 ? menuOption.classList.add('active') : '';
 }));
 menuLinks.map(link => link.addEventListener('mouseout', () => {
   const menuOption = link.firstElementChild;
-  menuOption.classList.remove('active');
+  window.innerWidth > 800 ? menuOption.classList.remove('active') : '';
 }));
-// textField.addEventListener('keyup', autoComplete);
 
 // Use only for app development / delete upon app completion
-const skip = document.querySelector('.skip');
-skip.addEventListener('click', () => welcomeWrapper.classList.add('slide-out'));
-
-menuLinks.map(link => link.addEventListener('click', () => { 
+menuLinks.map(ahref => ahref.addEventListener('click', () => { 
+  const link = ahref.firstElementChild;
   sidebar.classList.remove('active');
   menu.classList.remove('active');
-  link.firstElementChild.innerHTML === 'Welcome' ? welcomeWrapper.classList.remove('slide-out') : '';
-  link.firstElementChild.innerHTML === 'Forecast' ? overviewWrapper.classList.add('slide-out') : '';
+
+  sections.map(section => {
+    section.className.includes(link.dataset.pseudoClass) && section.className.includes('slide-out') ? section.classList.remove('slide-out') : '';
+    !section.className.includes(link.dataset.pseudoClass) ? section.classList.add('slide-out') : '';
+  });
+
   textField.focus();
 }));
 

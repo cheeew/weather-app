@@ -1,6 +1,7 @@
 import { config } from './config';
-import { city, currentTempF, currentTempC, highF, highC, lowF, lowC, weatherIcon } from './overview.js';
+import { city, currentTempF, currentTempC, highF, highC, lowF, lowC, weatherIcon, overviewWrapper, menu, menuContainer } from './overview.js';
 import { hourTitle, hourImage, tempTitle, weekday, dayIcon, dayLow, dayHigh } from './forecast.js';
+import { todaySummary, weekSummary, windSpeedResult, humidityResult, visibilityResult, uvIndexResult, precipitationResult, dewPoint } from './details.js';
 
 export const welcomeWrapper = document.querySelector('.welcome-wrapper');
 export const textField = document.querySelector('.enter-city');
@@ -45,12 +46,14 @@ export function getWeatherByZip(e) {
       highC.innerHTML = Math.round((highF.innerHTML - 32) * (5/9));
       lowC.innerHTML = Math.round((lowF.innerHTML - 32) * (5/9));
       // populate weather image
-      data.currently.icon === 'clear-day' ? weatherIcon.src = "./weather_icons/clear-day.png" : '';
-      data.currently.icon === 'clear-night' ? weatherIcon.src = "./weather_icons/clear-night.png" : '';
-      data.currently.icon === 'partly-cloudy-day' ? weatherIcon.src = "./weather_icons/partly-cloudy-day.png" : '';
-      data.currently.icon === 'partly-cloudy-night' ? weatherIcon.src = "./weather_icons/partly-cloudy-night.png" : '';
-      data.currently.icon === 'cloudy' ? weatherIcon.src = "./weather_icons/cloudy.png" : '';
-      data.currently.icon === 'rain' ? weatherIcon.src = "./weather_icons/rain.png" : '';
+      data.currently.icon === 'clear-day' ? weatherIcon.map(icon => icon.src = "./weather_icons/clear-day.png") : '';
+      data.currently.icon === 'clear-night' ? weatherIcon.map(icon => icon.src = "./weather_icons/clear-night.png") : '';
+      data.currently.icon === 'partly-cloudy-day' ? weatherIcon.map(icon => icon.src = "./weather_icons/partly-cloudy-day.png") : '';
+      data.currently.icon === 'partly-cloudy-night' ? weatherIcon.map(icon => icon.src = "./weather_icons/partly-cloudy-night.png") : '';
+      data.currently.icon === 'cloudy' ? weatherIcon.map(icon => icon.src = "./weather_icons/cloudy.png") : '';
+      data.currently.icon === 'rain' ? weatherIcon.map(icon => icon.src = "./weather_icons/rain.png") : '';
+      data.currently.icon === 'fog' ? weatherIcon.map(icon => icon.src = "./weather_icons/fog.png") : '';
+      data.currently.icon === 'wind' ? weatherIcon.map(icon => icon.src = "./weather_icons/wind.png") : '';
       // Populate Hourly Forecast
       data.hourly.data.map(array => { 
         if(i > 23) return;
@@ -68,6 +71,8 @@ export function getWeatherByZip(e) {
         array.icon === 'partly-cloudy-night' ? hourImage[i].src = "./weather_icons/partly-cloudy-night.png" : '';
         array.icon === 'cloudy' ? hourImage[i].src = "./weather_icons/cloudy.png" : '';
         array.icon === 'rain' ? hourImage[i].src = "./weather_icons/rain.png" : '';
+        array.icon === 'fog' ? hourImage[i].src = "./weather_icons/fog.png" : '';
+        array.icon === 'wind' ? hourImage[i].src = "./weather_icons/wind.png" : '';
 
         i += 1;
       });
@@ -91,12 +96,28 @@ export function getWeatherByZip(e) {
         array.icon === 'partly-cloudy-night' ? dayIcon[i].src = "./weather_icons/partly-cloudy-night.png" : '';
         array.icon === 'cloudy' ? dayIcon[i].src = "./weather_icons/cloudy.png" : '';
         array.icon === 'rain' ? dayIcon[i].src = "./weather_icons/rain.png" : '';
+        array.icon === 'fog' ? dayIcon[i].src = "./weather_icons/fog.png" : '';
+        array.icon === 'wind' ? dayIcon[i].src = "./weather_icons/wind.png" : '';
 
         i += 1;
       });
+      // Populate Current Day Details Page
+      todaySummary.innerHTML = `Today: ${data.daily.data[0].summary}`;
+      weekSummary.innerHTML = `Week: ${data.daily.summary}`;
+      windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} mph`;
+      humidityResult.innerHTML = `${Math.round(data.currently.humidity * 100)}%`;
+      visibilityResult.innerHTML = `${data.currently.visibility}`;
+      uvIndexResult.innerHTML = data.currently.uvIndex;
+      precipitationResult.innerHTML = data.currently.precipProbability;
+      dewPoint.innerHTML = Math.round(data.currently.dewPoint);
+
       form.reset();
+      overviewWrapper.className.includes('slide-out') ? overviewWrapper.classList.remove('slide-out') : '';
       welcomeWrapper.classList.add('slide-out');
     });
+
+    menu.style.zIndex = '7';
+    menuContainer.style.zIndex = '7';
 }
 
 export function getWeatherByLocation(position) {
@@ -128,12 +149,14 @@ export function getWeatherByLocation(position) {
         highC.innerHTML = Math.round((highF.innerHTML - 32) * (5/9));
         lowC.innerHTML = Math.round((lowF.innerHTML - 32) * (5/9));
         // populate weather image
-        data.currently.icon === 'clear-day' ? weatherIcon.src = "./weather_icons/clear-day.png" : '';
-        data.currently.icon === 'clear-night' ? weatherIcon.src = "./weather_icons/clear-night.png" : '';
-        data.currently.icon === 'partly-cloudy-day' ? weatherIcon.src = "./weather_icons/partly-cloudy-day.png" : '';
-        data.currently.icon === 'partly-cloudy-night' ? weatherIcon.src = "./weather_icons/partly-cloudy-night.png" : '';
-        data.currently.icon === 'cloudy' ? weatherIcon.src = "./weather_icons/cloudy.png" : '';
-        data.currently.icon === 'rain' ? weatherIcon.src = "./weather_icons/rain.png" : '';
+        data.currently.icon === 'clear-day' ? weatherIcon.map(icon => icon.src = "./weather_icons/clear-day.png") : '';
+        data.currently.icon === 'clear-night' ? weatherIcon.map(icon => icon.src = "./weather_icons/clear-night.png") : '';
+        data.currently.icon === 'partly-cloudy-day' ? weatherIcon.map(icon => icon.src = "./weather_icons/partly-cloudy-day.png") : '';
+        data.currently.icon === 'partly-cloudy-night' ? weatherIcon.map(icon => icon.src = "./weather_icons/partly-cloudy-night.png") : '';
+        data.currently.icon === 'cloudy' ? weatherIcon.map(icon => icon.src = "./weather_icons/cloudy.png") : '';
+        data.currently.icon === 'rain' ? weatherIcon.map(icon => icon.src = "./weather_icons/rain.png") : '';
+        data.currently.icon === 'fog' ? weatherIcon.map(icon => icon.src = "./weather_icons/fog.png") : '';
+        data.currently.icon === 'wind' ? weatherIcon.map(icon => icon.src = "./weather_icons/wind.png") : '';
       
         // Populate Hourly Forecast
       data.hourly.data.map(array => { 
@@ -152,6 +175,8 @@ export function getWeatherByLocation(position) {
         array.icon === 'partly-cloudy-night' ? hourImage[i].src = "./weather_icons/partly-cloudy-night.png" : '';
         array.icon === 'cloudy' ? hourImage[i].src = "./weather_icons/cloudy.png" : '';
         array.icon === 'rain' ? hourImage[i].src = "./weather_icons/rain.png" : '';
+        array.icon === 'fog' ? hourImage[i].src = "./weather_icons/fog.png" : '';
+        array.icon === 'wind' ? hourImage[i].src = "./weather_icons/wind.png" : '';
 
         i += 1;
       });
@@ -175,13 +200,27 @@ export function getWeatherByLocation(position) {
         array.icon === 'partly-cloudy-night' ? dayIcon[i].src = "./weather_icons/partly-cloudy-night.png" : '';
         array.icon === 'cloudy' ? dayIcon[i].src = "./weather_icons/cloudy.png" : '';
         array.icon === 'rain' ? dayIcon[i].src = "./weather_icons/rain.png" : '';
+        array.icon === 'fog' ? dayIcon[i].src = "./weather_icons/fog.png" : '';
+        array.icon === 'wind' ? dayIcon[i].src = "./weather_icons/wind.png" : '';
 
         i += 1;
       });
+      // Populate Current Day Details Page
+      todaySummary.innerHTML = `Today: ${data.daily.data[0].summary}`;
+      weekSummary.innerHTML = `Week: ${data.daily.summary}`;
+      windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} mph`;
+      humidityResult.innerHTML = `${Math.round(data.currently.humidity * 100)}%`;
+      visibilityResult.innerHTML = `${data.currently.visibility}`;
+      uvIndexResult.innerHTML = data.currently.uvIndex;
+      precipitationResult.innerHTML = data.currently.precipProbability;
+      dewPoint.innerHTML = Math.round(data.currently.dewPoint);
     });
   }
   getWeather();
+  overviewWrapper.className.includes('slide-out') ? overviewWrapper.classList.remove('slide-out') : '';
   welcomeWrapper.classList.add('slide-out');
+  menu.style.zIndex = '7';
+  menuContainer.style.zIndex = '7';
 }
 
 export function getLocation() {
