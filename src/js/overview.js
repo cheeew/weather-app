@@ -16,13 +16,13 @@ export const menu = document.querySelector('.menu');
 export const highlighter = document.querySelector('.highlighter');
 export const weatherIcon = [...document.querySelectorAll('.weather-icon')];
 
+// Dynamic styles for farenheit/celsius indicator
 highlighter.style.width = `${defaultTemp.getBoundingClientRect().width}px`;
 highlighter.style.left = `${defaultTemp.getBoundingClientRect().left}px`;
 highlighter.style.height = `${defaultTemp.getBoundingClientRect().height}px`;
 highlighter.style.top = `${defaultTemp.getBoundingClientRect().top + window.scrollY}px`;
 
-lowF.innerHTML !== '' ? menu.style.zIndex = '7' : '' ? menuContainer.style.zIndex = '7' : '';
-
+// Toggle temperatures between celsius and farenheit 
 export function toggleTemp() {
   const changeUnit = () => tempButtons.map(b => {
     b.className.includes('active') ? b.classList.remove('active') : b.classList.add('active');
@@ -51,6 +51,7 @@ export function toggleTemp() {
   !this.className.includes('active') ? changeUnit() : '';
 }
 
+// Automatic resizing of farenheit/celsius indicator
 export function responsiveHighlight() {
   const activeButton = tempButtons.filter(button => button.className.includes('active'));
   highlighter.style.width = `${defaultTemp.getBoundingClientRect().width}px`;

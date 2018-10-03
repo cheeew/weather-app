@@ -550,7 +550,7 @@ form input[type='text']::placeholder {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(73, 122, 214, 0.3);
   border-radius: 5px;
 }
 
@@ -744,7 +744,7 @@ form input[type='text']::placeholder {
 
 @media screen and (max-width: 530px) {
   .welcome-wrapper {
-    padding: 30% 15px 25px;
+    padding: 30% 20px 25px;
   }
 
   .welcome-header {
@@ -752,7 +752,7 @@ form input[type='text']::placeholder {
   }
 
   .weather-header {
-    padding: 0 25px;
+    padding: 0 20px;
   }
 
   .temp-unit {
@@ -785,7 +785,16 @@ form input[type='text']::placeholder {
     order: 1;
   }
 
-}
+  .menu, .menu-container {
+    left: 20px;
+  }
+
+  .menu:before {
+    left: 20px;
+  }
+  .menu:after {
+    left: 20px;
+  }
 
 @media screen and (max-width: 350px) {
   .current-temp {
