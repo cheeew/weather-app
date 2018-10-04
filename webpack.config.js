@@ -1,7 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -11,15 +11,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  plugins: [ 
-    new Dotenv(),
-    new HtmlWebpackPlugin({
-      // injects bundle.js to our new index.html
-      inject: true,
-      // copys the content of the existing index.html to the new /build index.html
-      template:  path.resolve('./index.html'),
-    }),
-  ],
   module: {
     rules: [
       {
@@ -31,7 +22,28 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { 
+              loader: 'css-loader', options: { minimize: true } 
+            }
+          ]
+        }),
       }
     ]
   },
+  plugins: [ 
+    new Dotenv(),
+    new HtmlWebpackPlugin({
+      // injects bundle.js to our new index.html
+      inject: true,
+      // copys the content of the existing index.html to /dist index.html
+      template:  path.resolve('./index.html'),
+    }),
+    new ExtractTextPlugin({filename: 'styles.css'}),
+  ],
 };

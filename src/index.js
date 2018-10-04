@@ -1,6 +1,7 @@
 import { findMeButton, form, searchButton, getWeatherByZip, getLocation, textField } from './js/welcome.js';
 import { menuLinks, sidebar } from './js/sidebar.js'
 import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight } from './js/overview.js';
+import "../styles.css";
 
 const sections = [...document.querySelectorAll('section')];
 
