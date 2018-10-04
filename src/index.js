@@ -1,8 +1,7 @@
 import { findMeButton, form, searchButton, getWeatherByZip, getLocation, textField } from './js/welcome.js';
 import { menuLinks, sidebar } from './js/sidebar.js'
 import { tempButtons, menuContainer, menu, toggleTemp, responsiveHighlight } from './js/overview.js';
-import moment from 'moment-timezone';
-moment().tz("America/Los_Angeles").format();
+
 const sections = [...document.querySelectorAll('section')];
 
 // Retreive weather via user location

@@ -306,7 +306,6 @@ form input[type='text']::placeholder {
 
 .temp {
   display: none;
-  transition: 
 }
 
 .temp.active {
@@ -795,6 +794,7 @@ form input[type='text']::placeholder {
   .menu:after {
     left: 20px;
   }
+}
 
 @media screen and (max-width: 350px) {
   .current-temp {
