@@ -39,7 +39,9 @@ module.exports = {
     ]
   },
   plugins: [ 
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true
+    }),
     new HtmlWebpackPlugin({
       // injects bundle.js to our new index.html
       inject: true,
