@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cssnano = require("cssnano");
 
 module.exports = {
   mode: 'development',
@@ -29,7 +31,7 @@ module.exports = {
           fallback: 'style-loader',
           use: [
             { 
-              loader: 'css-loader', options: { minimize: true } 
+              loader: 'css-loader'
             }
           ]
         }),
@@ -45,5 +47,17 @@ module.exports = {
       template:  path.resolve('./index.html'),
     }),
     new ExtractTextPlugin({filename: 'styles.css'}),
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true,
+        },
+        // Run cssnano in safe mode to avoid
+        // potentially unsafe transformations.
+        safe: true,
+      },
+      canPrint: false,
+    }),
   ],
 };
