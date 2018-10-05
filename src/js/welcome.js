@@ -26,7 +26,7 @@ export function getWeatherByZip(e) {
       data.results[0].address_components.map(address => {
         address.types.includes('locality') ? city.innerHTML = address.long_name : '';
       });
-      return fetchJsonp(config.darkskyUrl + config.darkskyApiKey + coords);
+      return fetchJsonp(`${config.darkskyUrl}${config.darkskyApiKey}/${coords}`);
     })
     .then(response => response.json())
     .then(data => {
@@ -129,7 +129,7 @@ export function getWeatherByLocation(position) {
   let latitude = position.coords.latitude,
   longitude = position.coords.longitude;
   const googleParams = `?latlng=${latitude},${longitude}&key=${config.googleApiKey}`,
-  darkskyParams = `${config.darkskyApiKey}${latitude},${longitude}`;
+  darkskyParams = `${config.darkskyApiKey}/${latitude},${longitude}`;
   let i = 0;
 
   const getWeather = () => {
