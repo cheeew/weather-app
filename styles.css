@@ -519,6 +519,7 @@ h1, h2, h3{
   -webkit-overflow-scrolling: touch;
   display: flex;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .hour-container {
@@ -560,10 +561,11 @@ h1, h2, h3{
 
 .weekly-forecast {
   width: 100%;
-  flex: 1;
+  flex: 1 1 auto;
   padding: 10px 15px 0;
   box-sizing: border-box;
   overflow-y: auto;
+  -webkit-overflow-scrolling: 
 }
 
 .daily-update {
@@ -589,17 +591,17 @@ h1, h2, h3{
   height: auto;
 }
 
-.temp-of-day::before {
+/* .temp-of-day::before {
   width: 2px;
   height: 20px;
   background-color: rgb(189, 189, 189);
   position: absolute;
   content: '';
   transform: translate(33.5px, 1px);
-}
+} */
 
-.high-temp {
-  margin-left: 15px;
+.divider {
+  margin: 0 5px;
 }
 
 /* Current Day Details Styles */
