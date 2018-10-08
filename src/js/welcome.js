@@ -108,7 +108,7 @@ export function getWeatherByZip(e) {
       // Populate Details Page
       todaySummary.innerHTML = `Today: ${data.daily.data[0].summary}`;
       weekSummary.innerHTML = `Week: ${data.daily.summary}`;
-      windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} mph`;
+      windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} m/h`;
       humidityResult.innerHTML = `${Math.round(data.currently.humidity * 100)}%`;
       visibilityResult.innerHTML = `${data.currently.visibility}`;
       uvIndexResult.innerHTML = data.currently.uvIndex;
@@ -224,7 +224,7 @@ export function getWeatherByLocation(position) {
         // Populates Details Page
         todaySummary.innerHTML = `Today: ${data.daily.data[0].summary}`;
         weekSummary.innerHTML = `Week: ${data.daily.summary}`;
-        windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} mph`;
+        windSpeedResult.innerHTML = `${Math.round(data.currently.windSpeed)} m/h`;
         humidityResult.innerHTML = `${Math.round(data.currently.humidity * 100)}%`;
         visibilityResult.innerHTML = `${data.currently.visibility}`;
         uvIndexResult.innerHTML = data.currently.uvIndex;
