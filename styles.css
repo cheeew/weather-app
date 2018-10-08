@@ -83,7 +83,7 @@ h1, h2, h3{
   box-sizing: border-box;
 }
 
-form input[type='text'] {
+.enter-city {
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   height: 35px;
@@ -94,11 +94,11 @@ form input[type='text'] {
   margin: 0 5%;
 }
 
-form input[type='text']:focus {
+.enter-city:focus {
   outline: none;
 }
 
-form input[type='text']::placeholder {
+.enter-city::placeholder {
   text-align: center;
   font-size: 15px;
 }

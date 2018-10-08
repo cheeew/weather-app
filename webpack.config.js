@@ -4,6 +4,8 @@ const Dotenv = require('dotenv-webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   mode: 'development',
@@ -35,7 +37,7 @@ module.exports = {
             }
           ]
         }),
-      }
+      },
     ]
   },
   plugins: [ 
@@ -61,5 +63,8 @@ module.exports = {
       },
       canPrint: false,
     }),
+    new CopyWebpackPlugin([
+      { from: './weather_icons', to: 'weather_icons' }
+    ]),
   ],
 };
