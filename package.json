@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheeew/weather-app.git"
+    "url": "git+https://github.com/matthewoctober/weather-app.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cheeew/weather-app/issues"
+    "url": "https://github.com/matthewoctober/weather-app/issues"
   },
-  "homepage": "https://github.com/cheeew/weather-app#readme",
+  "homepage": "https://github.com/matthewoctober/weather-app#readme",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.0",
