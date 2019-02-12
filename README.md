@@ -1,8 +1,8 @@
 # Rain or Shine Weather App
 
-<img src="https://www.matthewoctober.com/static/b6604a00276ef8cd82fbdc2ff15c3d72/26665/weather.png" alt="Weather App screenshot" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5)" />
+<img src="./weather.png" alt="Weather App screenshot" style="box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5)" />
 
-Just another weather app for the world. 
+Just another weather app for the world.
 
 This weather app leverages Dark Sky's API, which includes the following information:
 - Current temperature
